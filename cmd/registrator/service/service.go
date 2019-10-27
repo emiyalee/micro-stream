@@ -4,12 +4,12 @@ import (
 	"net"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/emiyalee/stream-system/utils/consul"
+	"github.com/emiyalee/micro-stream/pkg/consul"
 )
 
 //ConsulConfig ...

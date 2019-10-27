@@ -3,10 +3,10 @@ package controllers
 import (
 	"encoding/json"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/astaxie/beego"
+	log "github.com/sirupsen/logrus"
 
-	"github.com/emiyalee/stream-system/stream-agent-server/models"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/models"
 )
 
 type streamAddrResponse struct {

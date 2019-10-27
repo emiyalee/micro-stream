@@ -3,11 +3,11 @@ package models
 import (
 	"context"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	pb "github.com/emiyalee/stream-system/proto/playcontrol"
-	"github.com/emiyalee/stream-system/utils/consul"
+	pb "github.com/emiyalee/micro-stream/internal/pkg/proto-spec/playcontrol"
+	"github.com/emiyalee/micro-stream/pkg/consul"
 )
 
 type StreamURLResponse struct {

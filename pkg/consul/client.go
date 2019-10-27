@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/hashicorp/consul/api"
+	log "github.com/sirupsen/logrus"
 )
 
 //Client ...

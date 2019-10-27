@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/emiyalee/stream-system/stream-agent-server/controllers"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/controllers"
 )
 
 func init() {

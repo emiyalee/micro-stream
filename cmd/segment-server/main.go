@@ -5,10 +5,10 @@ import (
 	"os"
 	"os/signal"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 
-	"github.com/emiyalee/stream-system/segment-server/service"
-	"github.com/emiyalee/stream-system/utils/logger/redis"
+	"github.com/emiyalee/micro-stream/cmd/segment-server/service"
+	"github.com/emiyalee/micro-stream/pkg/logger/redis"
 )
 
 var (

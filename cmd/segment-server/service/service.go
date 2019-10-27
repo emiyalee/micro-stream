@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	pb "github.com/emiyalee/stream-system/proto/segment"
-	"github.com/emiyalee/stream-system/utils/consul"
+	pb "github.com/emiyalee/micro-stream/internal/pkg/proto-spec/segment"
+	"github.com/emiyalee/micro-stream/pkg/consul"
 )
 
 //ConsulConfig ...

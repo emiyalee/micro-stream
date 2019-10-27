@@ -8,13 +8,13 @@ import (
 	"net"
 	"strings"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/hashicorp/consul/api"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	segmentpb "github.com/emiyalee/stream-system/proto/segment"
-	"github.com/emiyalee/stream-system/utils/consul"
-	"github.com/emiyalee/stream-system/utils/sql"
+	segmentpb "github.com/emiyalee/micro-stream/internal/pkg/proto-spec/segment"
+	"github.com/emiyalee/micro-stream/pkg/consul"
+	"github.com/emiyalee/micro-stream/pkg/sql"
 )
 
 //Config ...

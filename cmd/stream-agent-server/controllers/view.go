@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	log "github.com/Sirupsen/logrus"
 	"github.com/astaxie/beego"
-	"github.com/emiyalee/stream-system/stream-agent-server/models"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/models"
+	log "github.com/sirupsen/logrus"
 )
 
 type ViewController struct {

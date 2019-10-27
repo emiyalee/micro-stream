@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"os"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/astaxie/beego"
+	log "github.com/sirupsen/logrus"
 
-	"github.com/emiyalee/stream-system/stream-agent-server/controllers"
-	"github.com/emiyalee/stream-system/stream-agent-server/controllers/lookup"
-	"github.com/emiyalee/stream-system/stream-agent-server/models"
-	_ "github.com/emiyalee/stream-system/stream-agent-server/routers"
-	"github.com/emiyalee/stream-system/utils/logger/redis"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/controllers"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/controllers/lookup"
+	"github.com/emiyalee/micro-stream/cmd/stream-agent-server/models"
+	_ "github.com/emiyalee/micro-stream/cmd/stream-agent-server/routers"
+	"github.com/emiyalee/micro-stream/pkg/logger/redis"
 )
 
 var (

@@ -5,14 +5,14 @@ import (
 	"net"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/emiyalee/stream-system/play-control-server/service/stream"
-	pb "github.com/emiyalee/stream-system/proto/playcontrol"
-	"github.com/emiyalee/stream-system/utils/consul"
+	"github.com/emiyalee/micro-stream/cmd/play-control-server/service/stream"
+	pb "github.com/emiyalee/micro-stream/internal/pkg/proto-spec/playcontrol"
+	"github.com/emiyalee/micro-stream/pkg/consul"
 )
 
 //ConsulConfig ...
