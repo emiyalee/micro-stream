@@ -1,0 +1,137 @@
+version: "3.6"
+services:
+  stream_agent_server:
+    image: 172.16.5.147:5000/emiyalee/stream-agent-server:1.0.4
+    command: bash -c "nginx && ./stream_agent_server -consul_host consul"
+    ports:
+      - "11001:80"
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+    networks: 
+      - net_service
+
+  play_control_server:
+    image: 172.16.5.147:5000/emiyalee/play-control-server:1.0.2
+    command: play_control_server -consul_host consul -db_host media_info_database
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+      placement: 
+        constraints: 
+          - node.hostname == centos-7-2
+    networks: 
+      - net_service
+
+  segment_server:
+    image: 172.16.5.147:5000/emiyalee/segment-server:1.0.2
+    command: segment_server -consul_host consul
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+    networks: 
+      - net_service
+
+  store_server:
+    image: 172.16.5.147:5000/emiyalee/store-server:1.0.1
+    command: bash -c "nginx && registrator -consul_host consul"
+    volumes:
+      #- /home/lihualin/workspace/go/src/github.com/emiyalee/stream-system/deploy/volume/store:/usr/share/nginx/html/store
+      - nfs_store:/usr/share/nginx/html/store
+    environment:
+      - SERVICE_NAME=store-service
+    deploy:
+      replicas: 4
+      # placement: 
+      #   constraints: 
+      #     - node.role == manager
+    networks: 
+      - net_service
+
+  stream_server:
+    image: 172.16.5.147:5000/emiyalee/stream-server:1.0.1
+    command: bash -c "nginx && registrator -consul_host consul"
+    volumes:
+      #- /home/lihualin/workspace/go/src/github.com/emiyalee/stream-system/deploy/volume/stream:/usr/share/nginx/html/stream
+      - nfs_stream:/usr/share/nginx/html/stream
+    ports:
+      - "13001:80"
+    environment:
+      - SERVICE_NAME=stream-service
+    deploy:
+      replicas: 4
+      # placement: 
+      #   constraints: 
+      #     - node.role == manager
+    networks: 
+      - net_service
+
+  media_info_database:
+    image: 172.16.5.147:5000/mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      #- /home/lihualin/workspace/go/src/github.com/emiyalee/stream-system/deploy/volume/mysql:/var/lib/mysql
+      - nfs_mysql:/var/lib/mysql
+    # deploy:
+    #   placement: 
+    #     constraints: 
+    #       - node.role == manager
+    networks: 
+      - net_service
+
+  consul:
+    image: consul:1.1.0
+    ports:
+      - "8500:8500"
+    command: agent -server -bootstrap -bootstrap-expect=1 -bind=127.0.0.1 -client=0.0.0.0 -ui
+    deploy:
+      placement: 
+        constraints: 
+          - node.role == manager
+      restart_policy:
+        condition: any
+    environment:
+      - CONSUL_UI_BETA=1
+      - SERVICE_IGNORE=true
+    networks: 
+      - net_service
+
+  # redis:
+  #   image: redis
+  #   ports:
+  #     - 6379:6379
+  #   deploy:
+  #     # resources:
+  #     #   reservations:
+  #     #     memory: 100M
+  #     placement: 
+  #       constraints: 
+  #         - node.role == manager
+  #   networks: 
+  #     - net_service
+  #     # - log_system_net_log
+
+networks: 
+  net_service:
+    ipam:
+      config:
+        - subnet: 172.10.0.0/16
+        
+  # log_system_net_log:
+  #   external: true
+
+volumes:
+  nfs_mysql:
+    external: true
+
+  nfs_stream:
+    external: true
+
+  nfs_store:
+    external: true

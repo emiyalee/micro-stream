@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package segment;
+
+service SegmentService{
+    rpc MediaSegment(MediaSegmentRequest) returns(MediaSegmentResponse);
+}
+
+message MediaSegmentRequest{
+    string srcMediaURL =1;
+    string dstMediaURL =2;
+}
+
+message MediaSegmentResponse{
+    int32 errorCode = 1;
+    string errorMessage = 2;
+}

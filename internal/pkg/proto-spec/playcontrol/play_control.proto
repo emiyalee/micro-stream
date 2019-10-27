@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package playcontrol;
+
+service PlayService{
+    rpc ApplyPlay(ApplyPlayRequest) returns (ApplyPlayResponse);
+}
+
+message ApplyPlayRequest{
+    string mediaResourceID = 1;
+}
+
+message ApplyPlayResponse{
+    int32 errorCode = 1;
+    string errorMessage = 2;
+    string playURL = 3;
+}
